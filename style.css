@@ -15,22 +15,27 @@ body{
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
+  margin-top: 80px;
 }
 .tagline{
   text-align: center;
   margin-left: 10px;
-
+margin: 30px 20px 12px 40px;
 }
 button{
   padding: 13px;
   border-radius: 12px;
   width: 70px;
-  margin: 20px auto;
   background-color: #1c1c1c;
   color:#fff;
   border: none;
   font-weight: 300;
   font-size: 16px;
   text-align: center;
-  
+}
+.btnrow{
+  display: flex;              /* arrange buttons in a row */
+  justify-content: center;    /* center them horizontally */
+  gap: 12px;                  /* optional spacing between buttons */
+  margin-top: 30px;
 }
