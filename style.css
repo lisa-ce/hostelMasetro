@@ -9,13 +9,24 @@ body{
   font-family: sans-serif;
   
 }
+img{
+margin:0 auto;
+  width: 50px;
+  border-radius: 10px;
+display: flex;
+margin-top: 50px;
+
+}
 .main{
   text-align: center;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
-  margin-top: 80px;
+  margin-top: 20px;
+}
+.predictor{
+  color: rgb(130, 203, 21);
 }
 .tagline{
   text-align: center;
@@ -38,4 +49,8 @@ button{
   justify-content: center;    /* center them horizontally */
   gap: 12px;                  /* optional spacing between buttons */
   margin-top: 30px;
+}
+.wed{
+  background-color: rgb(130, 203, 21);
+  color: black;
 }
