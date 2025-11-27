@@ -54,3 +54,16 @@ button{
   background-color: rgb(130, 203, 21);
   color: black;
 }
+
+.mon{
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #1c1c1c;
+  border-radius: 20px;
+  font-size: 14px;
+  border-color: rgb(130, 203, 21);
+}
+.limeicon{
+  background-color: rgb(130, 203, 21);
+  mix-blend-mode: multiply;
+}
