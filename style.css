@@ -88,6 +88,7 @@ button.active-day{
   border-radius: 16px;
   padding: 20px;
   border: 1px solid orange;
+  line-height: 1.5;
 }
 .day{
   font-size: 22px;
@@ -123,6 +124,18 @@ button.active-day{
   padding: 14px;
   margin-bottom: 12px;
   border: 1px solid orange;
+}
+.first-part,
+.second-part {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.description-ofbreakfast {
+  font-size: 13px;
+  color: #bdbdbd;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 @media (max-width: 1100px) {
   .menu-container {
