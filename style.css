@@ -89,6 +89,17 @@ button.active-day{
   padding: 20px;
   border: 1px solid orange;
 }
+.day{
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.day i{
+  color: orange;
+  margin-right: 8px;
+}
+
+
 @media (max-width: 1100px) {
   .menu-container {
     grid-template-columns: repeat(2, 1fr);
