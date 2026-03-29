@@ -72,3 +72,17 @@ button{
  color: rgb(130, 203, 21);
 
 }
+.menu-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto; 
+}
+
+.menus {
+  min-width: 300px; 
+  background-color: #111;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(130, 203, 21, 0.3);
+}
