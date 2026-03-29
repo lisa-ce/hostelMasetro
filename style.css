@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 body{
-  background-color: black;
-  color: #fff;
+  background-color:white;
+  color:black;
   font-family: sans-serif;
   
 }
@@ -26,7 +26,7 @@ margin-top: 50px;
   margin-top: 20px;
 }
 .predictor{
-  color: rgb(130, 203, 21);
+  color: orange;
 }
 .tagline{
   text-align: center;
@@ -38,7 +38,7 @@ button{
   border-radius: 12px;
   width: 70px;
   background-color: #1c1c1c;
-  color:#fff;
+  color:white;
   border: none;
   font-weight: 300;
   font-size: 16px;
@@ -50,10 +50,7 @@ button{
   gap: 12px;                  /* optional spacing between buttons */
   margin-top: 30px;
 }
-.wed{
-  background-color: rgb(130, 203, 21);
-  color: black;
-}
+
 
 .mon{
   display: inline-block;
@@ -61,12 +58,12 @@ button{
   background-color: #1c1c1c;
   border-radius: 20px;
   font-size: 14px;
-  border-color: rgb(130, 203, 21);
+  border-color:orange;
 }
 
 
 .prediction-style{
- color: rgb(130, 203, 21);
+ color: orange;
 
 }
 .menu-container {
@@ -75,13 +72,14 @@ button{
   gap: 24px;
   padding: 20px;
   align-items: start;
+  color: white;
 }
 .menus.show{
   display: block;
 }
 button.active-day{
-  background-color: rgb(130, 203, 21);
-  color: black;
+  background-color: orange;
+  color: white;
 }
 .menus {
   display: none;
@@ -89,7 +87,7 @@ button.active-day{
   background-color: #111;
   border-radius: 16px;
   padding: 20px;
-  border: 1px solid rgba(130, 203, 21, 0.3);
+  border: 1px solid orange;
 }
 @media (max-width: 1100px) {
   .menu-container {
