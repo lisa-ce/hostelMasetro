@@ -99,7 +99,31 @@ button.active-day{
   margin-right: 8px;
 }
 
+.prediction{
+  margin-bottom: 20px;
+}
+.prediction-style{
+  color: orange;
+  font-weight: 600;
+  font-size: 14px;
+}
+.breakfast,.lunch,.dinner{
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+.description{
+  background-color: #1a1a1a;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid orange;
+}
 @media (max-width: 1100px) {
   .menu-container {
     grid-template-columns: repeat(2, 1fr);
