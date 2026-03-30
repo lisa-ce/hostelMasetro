@@ -35,3 +35,33 @@ The system follows a 3-week rotating cycle:
 - Update meals for specific dates
 - Override default menu when changes occur
 - Add reasons for changes
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### Backend
+- Java
+- Spring Boot
+- REST API
+
+### Database
+- Microsoft SQL Server
+
+---
+
+## 🗄️ Database Design
+
+**Tables:**
+- `menu_cycle` → stores the 3-week rotation  
+- `menu_item` → stores meals for each day  
+- `menu_override` → stores real-time meal changes  
+- `admin_user` → stores admin credentials  
+
+---
+
