@@ -43,3 +43,12 @@ CREATE TABLE admin_user (
     username VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL
 );
+
+
+--THE CYCLES
+
+INSERT INTO menu_cycle (cycle_name, cycle_order)
+VALUES
+('Nicolleth', 1),
+('Rosy', 2),
+('Meriam', 3);
