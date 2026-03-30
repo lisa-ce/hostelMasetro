@@ -177,3 +177,17 @@ VALUES
 (3, 'Sunday', 'Lunch', 'Chicken', 'Rice, Vegetable Salad, Juice, Pudding'),
 (3, 'Sunday', 'Supper', 'Mince', 'Lasagna/Cheese Mix Salad, Bread, Margarine, Jam, Fruit, Tea/Coffee');
 GO
+
+SELECT *
+FROM menu_item
+ORDER BY cycle_id, 
+         CASE day_of_week
+           WHEN 'Monday' THEN 1
+           WHEN 'Tuesday' THEN 2
+           WHEN 'Wednesday' THEN 3
+           WHEN 'Thursday' THEN 4
+           WHEN 'Friday' THEN 5
+           WHEN 'Saturday' THEN 6
+           WHEN 'Sunday' THEN 7
+         END,
+         meal_type;
