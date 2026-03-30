@@ -1,2 +1,4 @@
 CREATE DATABASE HostelMenuDB;
-
+GO
+USE HostelMenuDB;
+GO
