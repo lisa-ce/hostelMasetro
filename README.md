@@ -65,3 +65,68 @@ The system follows a 3-week rotating cycle:
 
 ---
 
+## ⚙️ How It Works
+
+1. The system determines the current week in the 3-week cycle  
+2. It fetches the corresponding menu (**Nicolleth, Rosy, or Meriam**)  
+3. It checks for any overrides for the current date  
+4. If an override exists → show updated meal  
+5. Otherwise → show default menu  
+
+---
+
+## 📡 API Endpoints (Planned)
+
+
+GET /api/menu/today
+GET /api/menu/week
+POST /api/overrides
+POST /api/auth/login
+
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/hostel-menu-predictor.git
+2. Set up the database
+Open SQL Server
+Run the provided SQL script
+Ensure database name is: HostelMenuDB
+3. Configure backend
+
+In application.properties:
+
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=HostelMenuDB;encrypt=true;trustServerCertificate=true
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+4. Run the backend
+
+Run the Spring Boot application.
+
+5. Open frontend
+
+Open index.html in your browser.
+
+📷 Screenshots
+
+Add screenshots of your UI here.
+
+🎯 Project Goals
+Improve accessibility of hostel meal information
+Reduce dependency on WhatsApp communication
+Provide a scalable system for future expansion
+📈 Future Improvements
+Mobile app version
+Push notifications for meal changes
+Multi-hostel support
+Analytics for meal trends
+🧾 License
+
+This project is for educational purposes.
+
+#👤 Author
+
+##Lisa Chikovore
