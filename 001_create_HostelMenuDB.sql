@@ -2,6 +2,8 @@ CREATE DATABASE HostelMenuDB;
 GO
 USE HostelMenuDB;
 GO
+
+--CYCLE TABLE
 CREATE TABLE menu_cycle(
 cycle_id INT PRIMARY KEY IDENTITY(1,1),
 cycle_name VARCHAR(50) NOT NULL,
