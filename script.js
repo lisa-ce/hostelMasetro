@@ -2,14 +2,31 @@ const buttons = document.querySelectorAll(".btnrow button");
 const menus = document.querySelectorAll(".menus");
 const menuContainer = document.querySelector(".menu-container");
 
-function showThreeDays(startDay) {
-  menus.forEach(menu => {
-    menu.classList.remove("show");
-  });
+function getMenuLabel(cardDay, today) {
+  const diff = (cardDay - today + 7) % 7;
 
-  buttons.forEach(button => {
-    button.classList.remove("active-day");
+  if (diff === 0) return "Today's Menu";
+  if (diff === 1) return "Tomorrow's Menu";
+  if (diff === 2) return "Menu in 2 days";
+  return `Menu in ${diff} days`;
+}
+
+function updateSubtitles() {
+  const today = new Date().getDay();
+
+  menus.forEach(menu => {
+    const cardDay = Number(menu.dataset.day);
+    const subtitle = menu.querySelector(".menu-subtitle");
+
+    if (subtitle) {
+      subtitle.textContent = getMenuLabel(cardDay, today);
+    }
   });
+}
+
+function showThreeDays(startDay) {
+  menus.forEach(menu => menu.classList.remove("show"));
+  buttons.forEach(button => button.classList.remove("active-day"));
 
   const activeButton = document.querySelector(`.btnrow button[data-day="${startDay}"]`);
   if (activeButton) {
@@ -39,6 +56,8 @@ buttons.forEach(button => {
     showThreeDays(clickedDay);
   });
 });
+
+updateSubtitles();
 
 const today = new Date().getDay();
 showThreeDays(today);

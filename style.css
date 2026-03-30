@@ -90,6 +90,13 @@ button.active-day{
   border: 1px solid orange;
   line-height: 1.5;
 }
+.menu-subtitle {
+  color: orange;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
 .day{
   font-size: 22px;
   font-weight: 700;
