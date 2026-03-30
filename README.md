@@ -22,3 +22,16 @@ The system follows a 3-week rotating cycle:
 ---
 
 ## 🚀 Features
+### 👨‍🎓 Student Features
+- View today’s menu
+- View the next 3 days of meals
+- Browse weekly menu
+- See labels like:
+  - “Today’s Menu”
+  - “Tomorrow’s Menu”
+
+### 🔧 Admin Features (Planned)
+- Admin login
+- Update meals for specific dates
+- Override default menu when changes occur
+- Add reasons for changes
