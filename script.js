@@ -8,21 +8,33 @@ const dayNames = {
   6: "Saturday"
 };
 
-let menuData = {};
+let allMenus = {};
 let selectedDay = new Date().getDay();
 
 function getSubtitle(dayNumber) {
   const today = new Date().getDay();
   const diff = (dayNumber - today + 7) % 7;
 
-  if (diff === 0) return "Today's Menu";
-  if (diff === 1) return "Tomorrow's Menu";
+  if (diff === 0) return "Today's Estimate Menu";
+  if (diff === 1) return "Tomorrow's Estimate Menu";
   return `Menu in ${diff} days`;
+}
+
+function updateActiveButton(day) {
+  const buttons = document.querySelectorAll(".btnrow button");
+
+  buttons.forEach(button => {
+    button.classList.remove("active-day");
+
+    if (Number(button.dataset.day) === Number(day)) {
+      button.classList.add("active-day");
+    }
+  });
 }
 
 function formatMealItems(items) {
   if (!items || items.length === 0) {
-    return `<p class="description-ofbreakfast">No items available</p>`;
+    return `<p class="first-part">No items available</p>`;
   }
 
   return items.map(item => {
@@ -38,67 +50,76 @@ function formatMealItems(items) {
 function createMenuCard(dayNumber, dayMenu) {
   return `
     <div class="menus" data-day="${dayNumber}">
-      <img src="calendar-regular-full.svg" alt="calendar icon" class="limeicon">
+      <div class="card-icon">
+        <img src="calendar-regular-full.svg" alt="calendar icon">
+      </div>
 
-      <div class="monday">
-        <p class="day"><i class="fa-regular fa-calendar"></i>${dayNames[dayNumber]}</p>
-        <p class="menu-subtitle">${getSubtitle(Number(dayNumber))}</p>
+      <p class="day"><i class="fa-regular fa-calendar"></i>${dayNames[dayNumber]}</p>
+      <p class="menu-subtitle">${getSubtitle(dayNumber)}</p>
 
-        <p class="breakfast">Breakfast</p>
-        <div class="description">
-          ${formatMealItems(dayMenu.breakfast)}
-        </div>
+      <p class="breakfast">Breakfast</p>
+      <div class="description">
+        ${formatMealItems(dayMenu.breakfast)}
+      </div>
 
-        <p class="lunch">Lunch</p>
-        <div class="description">
-          ${formatMealItems(dayMenu.lunch)}
-        </div>
+      <p class="lunch">Lunch</p>
+      <div class="description">
+        ${formatMealItems(dayMenu.lunch)}
+      </div>
 
-        <p class="dinner">Dinner</p>
-        <div class="description">
-          ${formatMealItems(dayMenu.dinner)}
-        </div>
+      <p class="dinner">Dinner</p>
+      <div class="description">
+        ${formatMealItems(dayMenu.dinner)}
       </div>
     </div>
   `;
 }
 
-function renderMenus(clickedDay) {
-  const container = document.getElementById("menuContainer");
-  container.innerHTML = "";
+function renderMenus(startDay) {
+  const menuContainer = document.getElementById("menuContainer");
+  menuContainer.innerHTML = "";
 
   for (let i = 0; i < 3; i++) {
-    const dayToShow = (clickedDay + i) % 7;
-    const dayMenu = menuData[dayToShow] || {
+    const dayToShow = (startDay + i) % 7;
+
+    const dayMenu = allMenus[dayToShow] || {
       breakfast: [],
       lunch: [],
       dinner: []
     };
 
-    container.innerHTML += createMenuCard(dayToShow, dayMenu);
+    menuContainer.innerHTML += createMenuCard(dayToShow, dayMenu);
   }
+
+  updateActiveButton(startDay);
 }
 
 async function loadMenus() {
   try {
-    const response = await fetch("get_menus.php");
+    const response = await fetch("get_menus.php?v=7");
     const data = await response.json();
 
-    menuData = data.menus || {};
+    allMenus = data.menus || {};
+
     document.getElementById("currentCycle").textContent = `Current cycle: ${data.cycle}`;
 
+    selectedDay = new Date().getDay();
     renderMenus(selectedDay);
   } catch (error) {
     console.error("Error loading menus:", error);
-    document.getElementById("currentCycle").textContent = "Failed to load menu data.";
+    document.getElementById("currentCycle").textContent = "Failed to load menu data";
   }
 }
 
-document.querySelectorAll(".btnrow button").forEach(button => {
-  button.addEventListener("click", () => {
-    selectedDay = Number(button.dataset.day);
-    renderMenus(selectedDay);
-  });
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".btnrow button");
 
-loadMenus();
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      selectedDay = Number(button.dataset.day);
+      renderMenus(selectedDay);
+    });
+  });
+
+  loadMenus();
+});

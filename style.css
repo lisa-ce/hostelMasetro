@@ -1,103 +1,174 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  color: #222;
+* {
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: Arial, sans-serif;
+}
+
+.page-wrap {
+  width: 100%;
 }
 
 .main {
-  font-size: 2rem;
-  font-weight: bold;
   text-align: center;
-  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  margin-top: 28px;
 }
 
 .predictor {
-  color: #7a5cff;
+  color: orange !important;
 }
 
 .tagline {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 26px 20px 12px 20px;
+  font-size: 16px;
 }
 
 .current-cycle-box {
   text-align: center;
+  margin-top: 16px;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
 }
 
 .btnrow {
   display: flex;
   justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 30px;
 }
 
 .btnrow button {
-  padding: 10px 16px;
-  border: none;
-  background: #222;
+  padding: 13px;
+  border-radius: 12px;
+  width: 56px;
+  background-color: #1c1c1c;
   color: white;
-  border-radius: 8px;
+  border: none;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .btnrow button:hover {
-  background: #444;
+  transform: translateY(-1px);
+}
+
+.btnrow button.active-day {
+  background-color: orange !important;
+  color: white !important;
 }
 
 .menu-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 20px;
+  align-items: start;
 }
 
 .menus {
-  background: white;
-  border-radius: 14px;
+  width: 100%;
+  background-color: #111 !important;
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid orange;
+  line-height: 1.5;
+  color: white !important;
+  min-height: 300px;
 }
 
-.limeicon {
-  width: 28px;
-  height: 28px;
-  margin-bottom: 10px;
+.menus * {
+  color: inherit;
+}
+
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-icon img {
+  width: 42px;
+  height: 42px;
+  display: block;
 }
 
 .day {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: white !important;
+}
+
+.day i {
+  color: orange !important;
+  margin-right: 8px;
 }
 
 .menu-subtitle {
-  color: #777;
-  margin-bottom: 16px;
+  color: orange !important;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  margin-bottom: 18px;
 }
 
 .breakfast,
 .lunch,
 .dinner {
-  font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  color: #7a5cff;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: white !important;
 }
 
 .description {
-  margin-bottom: 10px;
+  background-color: #1a1a1a !important;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid orange;
 }
 
 .first-part {
-  margin: 4px 0;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: white !important;
 }
 
 .description-ofbreakfast {
-  margin: 2px 0 8px 0;
-  color: #666;
-  font-size: 0.95rem;
+  font-size: 13px;
+  color: #bdbdbd !important;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1100px) {
+  .menu-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
 }

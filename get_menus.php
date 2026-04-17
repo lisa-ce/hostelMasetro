@@ -2,13 +2,12 @@
 header('Content-Type: application/json');
 include 'db.php';
 
-// Nicolleth starts on 2026-04-13
 $startDate = new DateTime('2026-04-13');
 $today = new DateTime();
-$today->setTime(0, 0, 0);
-$startDate->setTime(0, 0, 0);
 
-// If today is before start date, force Nicolleth
+$startDate->setTime(0, 0, 0);
+$today->setTime(0, 0, 0);
+
 if ($today < $startDate) {
     $cycleIndex = 0;
 } else {
@@ -24,8 +23,7 @@ $sql = "SELECT
             m.day_of_week,
             m.meal_type,
             m.item_name,
-            m.item_description,
-            c.cycle_name
+            m.item_description
         FROM menu_items m
         JOIN cycles c ON m.cycle_id = c.id
         WHERE c.cycle_name = ?
@@ -39,29 +37,28 @@ $stmt->bind_param("s", $currentCycle);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$groupedMenus = [];
+$menus = [];
 
 while ($row = $result->fetch_assoc()) {
-    $day = $row['day_of_week'];
+    $day = (int)$row['day_of_week'];
     $meal = $row['meal_type'];
 
-    if (!isset($groupedMenus[$day])) {
-        $groupedMenus[$day] = [
+    if (!isset($menus[$day])) {
+        $menus[$day] = [
             'breakfast' => [],
             'lunch' => [],
             'dinner' => []
         ];
     }
 
-    $groupedMenus[$day][$meal][] = [
+    $menus[$day][$meal][] = [
         'item_name' => $row['item_name'],
         'item_description' => $row['item_description']
     ];
 }
 
 echo json_encode([
-    "cycle" => $currentCycle,
-    "startDate" => $startDate->format('Y-m-d'),
-    "menus" => $groupedMenus
+    'cycle' => $currentCycle,
+    'menus' => $menus
 ]);
 ?>
