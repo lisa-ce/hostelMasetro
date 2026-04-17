@@ -1,157 +1,103 @@
-*{
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  padding: 20px;
 }
-body{
-  background-color:white;
-  color:black;
-  font-family: sans-serif;
-  
-}
-img{
-margin:0 auto;
-  width: 50px;
-  border-radius: 10px;
-display: flex;
-margin-top: 50px;
 
-}
-.main{
+.main {
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 36px;
-  margin-top: 20px;
+  margin-bottom: 5px;
 }
-.predictor{
-  color: orange;
+
+.predictor {
+  color: #7a5cff;
 }
-.tagline{
+
+.tagline {
   text-align: center;
-  margin-left: 10px;
-margin: 30px 20px 12px 40px;
+  margin-bottom: 20px;
 }
-button{
-  padding: 13px;
-  border-radius: 12px;
-  width: 70px;
-  background-color: #1c1c1c;
-  color:white;
+
+.current-cycle-box {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.btnrow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.btnrow button {
+  padding: 10px 16px;
   border: none;
-  font-weight: 300;
-  font-size: 16px;
-  text-align: center;
-}
-.btnrow{
-  display: flex;              /* arrange buttons in a row */
-  justify-content: center;    /* center them horizontally */
-  gap: 12px;                  /* optional spacing between buttons */
-  margin-top: 30px;
+  background: #222;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-
-.mon{
-  display: inline-block;
-  padding: 6px 14px;
-  background-color: #1c1c1c;
-  border-radius: 20px;
-  font-size: 14px;
-  border-color:orange;
+.btnrow button:hover {
+  background: #444;
 }
 
-
-.prediction-style{
- color: orange;
-
-}
 .menu-container {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 24px;
-  padding: 20px;
-  align-items: start;
-  color: white;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
-.menus.show{
-  display: block;
-}
-button.active-day{
-  background-color: orange;
-  color: white;
-}
+
 .menus {
-  display: none;
-  width: 100%; 
-  background-color: #111;
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid orange;
-  line-height: 1.5;
-}
-.menu-subtitle {
-  color: orange;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 8px;
-  margin-bottom: 20px;
-}
-.day{
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-.day i{
-  color: orange;
-  margin-right: 8px;
-}
-
-.prediction{
-  margin-bottom: 20px;
-}
-.prediction-style{
-  color: orange;
-  font-weight: 600;
-  font-size: 14px;
-}
-.breakfast,.lunch,.dinner{
-  margin-top: 18px;
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.description{
-  background-color: #1a1a1a;
+  background: white;
   border-radius: 14px;
-  padding: 14px;
-  margin-bottom: 12px;
-  border: 1px solid orange;
-}
-.first-part,
-.second-part {
-  font-weight: 600;
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-.description-ofbreakfast {
-  font-size: 13px;
-  color: #bdbdbd;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-@media (max-width: 1100px) {
-  .menu-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-@media (max-width: 700px) {
-  .menu-container {
-    grid-template-columns: 1fr;
-  }
+.limeicon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 10px;
+}
+
+.day {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.menu-subtitle {
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.breakfast,
+.lunch,
+.dinner {
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #7a5cff;
+}
+
+.description {
+  margin-bottom: 10px;
+}
+
+.first-part {
+  margin: 4px 0;
+  font-weight: 500;
+}
+
+.description-ofbreakfast {
+  margin: 2px 0 8px 0;
+  color: #666;
+  font-size: 0.95rem;
 }
