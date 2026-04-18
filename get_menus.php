@@ -2,17 +2,24 @@
 header('Content-Type: application/json');
 include 'db.php';
 
-$startDate = new DateTime('2026-04-13');
-$today = new DateTime();
+date_default_timezone_set('Africa/Windhoek');
 
-$startDate->setTime(0, 0, 0);
+// Base cycle start:
+// 2026-04-13 = Nicolleth
+// 2026-04-20 = Rosy
+// 2026-04-27 = Meriam
+$cycleStartDate = new DateTime('2026-04-13');
+$today = new DateTime();
+$cycleStartDate->setTime(0, 0, 0);
 $today->setTime(0, 0, 0);
 
-// figure out current cycle
-if ($today < $startDate) {
+// -------------------------
+// 1. Work out current cycle
+// -------------------------
+if ($today < $cycleStartDate) {
     $cycleIndex = 0;
 } else {
-    $daysPassed = $startDate->diff($today)->days;
+    $daysPassed = $cycleStartDate->diff($today)->days;
     $weeksPassed = floor($daysPassed / 7);
     $cycleIndex = $weeksPassed % 3;
 }
@@ -20,7 +27,9 @@ if ($today < $startDate) {
 $cycles = ['Nicolleth', 'Rosy', 'Meriam'];
 $currentCycle = $cycles[$cycleIndex];
 
-// get planned menu for current cycle
+// -------------------------
+// 2. Get planned menu items
+// -------------------------
 $sql = "SELECT 
             m.day_of_week,
             m.meal_type,
@@ -39,9 +48,8 @@ $stmt->bind_param("s", $currentCycle);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Prepare all 7 days
 $menus = [];
-
-// initialize all 7 days
 for ($day = 0; $day <= 6; $day++) {
     $menus[$day] = [
         'date' => '',
@@ -57,7 +65,7 @@ for ($day = 0; $day <= 6; $day++) {
     ];
 }
 
-// fill planned data
+// Put planned items into the correct weekday buckets
 while ($row = $result->fetch_assoc()) {
     $day = (int)$row['day_of_week'];
     $meal = $row['meal_type'];
@@ -67,21 +75,32 @@ while ($row = $result->fetch_assoc()) {
         'item_description' => $row['item_description']
     ];
 }
-
 $stmt->close();
-$todayDayNumber = (int)$today->format('w');
+
+// ----------------------------------------------------
+// 3. Assign REAL upcoming dates starting from today
+// ----------------------------------------------------
+// Today example:
+// Saturday 18 -> today bucket shown first in frontend
+// Sunday -> 19
+// Monday -> 20
+
+$todayDayNumber = (int)$today->format('w'); // 0=Sun, 1=Mon, ... 6=Sat
 
 for ($day = 0; $day <= 6; $day++) {
-    $diff = $day - $todayDayNumber;
+    // Always move FORWARD from today, never backward
+    $daysAhead = ($day - $todayDayNumber + 7) % 7;
 
     $menuDate = clone $today;
-    if ($diff !== 0) {
-        $menuDate->modify(($diff > 0 ? '+' : '') . $diff . ' days');
+    if ($daysAhead > 0) {
+        $menuDate->modify("+$daysAhead days");
     }
 
     $menus[$day]['date'] = $menuDate->format('Y-m-d');
 
-    // now check overrides for this actual date
+    // -----------------------------------------
+    // 4. Check overrides for that exact date
+    // -----------------------------------------
     $overrideSql = "SELECT meal_type, item_name, item_description, notes
                     FROM menu_overrides
                     WHERE override_date = ?
@@ -120,7 +139,6 @@ for ($day = 0; $day <= 6; $day++) {
 
     $overrideStmt->close();
 
-    // replace planned meal only if override exists
     foreach (['breakfast', 'lunch', 'dinner'] as $mealType) {
         if (!empty($overrideMeals[$mealType])) {
             $menus[$day][$mealType] = $overrideMeals[$mealType];
@@ -130,8 +148,13 @@ for ($day = 0; $day <= 6; $day++) {
     }
 }
 
+// -------------------------
+// 5. Return JSON
+// -------------------------
 echo json_encode([
     'cycle' => $currentCycle,
+    'today' => $today->format('Y-m-d'),
+    'today_day_number' => $todayDayNumber,
     'menus' => $menus
 ]);
 
