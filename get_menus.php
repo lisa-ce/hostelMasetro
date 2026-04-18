@@ -69,9 +69,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 $stmt->close();
-
-// assign actual calendar date to each day in this week
-$todayDayNumber = (int)$today->format('w'); // 0=Sun, 1=Mon, ..., 6=Sat
+$todayDayNumber = (int)$today->format('w');
 
 for ($day = 0; $day <= 6; $day++) {
     $diff = $day - $todayDayNumber;
