@@ -36,6 +36,7 @@
     </div>
 
     <div class="menu-container" id="menuContainer"></div>
+    <p class="menu-note">Note: Meals may change depending on ingredient availability.</p>
   </div>
 
   <script src="script.js?v=7"></script>

@@ -13,7 +13,12 @@ body {
 .page-wrap {
   width: 100%;
 }
-
+.menu-note {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #555;
+  font-size: 14px;
+}
 .main {
   text-align: center;
   font-weight: 700;
