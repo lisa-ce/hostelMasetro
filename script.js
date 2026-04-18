@@ -47,6 +47,36 @@ function formatMealItems(items) {
   }).join("");
 }
 
+function formatMealStatus(source, note) {
+  if (source === "override") {
+    return `
+      <div class="meal-status updated">
+        <p class="status-badge">Updated Today</p>
+        ${note && note.trim() !== ""
+          ? `<p class="chef-note">Chef Note: ${note}</p>`
+          : `<p class="chef-note">Chef Note: Menu adjusted based on ingredient availability.</p>`
+        }
+      </div>
+    `;
+  }
+
+  return `
+    <div class="meal-status planned">
+      <p class="planned-text">Planned Menu</p>
+    </div>
+  `;
+}
+
+function createMealSection(title, items, source, note) {
+  return `
+    <p class="${title.toLowerCase()}">${title}</p>
+    ${formatMealStatus(source, note)}
+    <div class="description">
+      ${formatMealItems(items)}
+    </div>
+  `;
+}
+
 function createMenuCard(dayNumber, dayMenu) {
   return `
     <div class="menus" data-day="${dayNumber}">
@@ -56,21 +86,28 @@ function createMenuCard(dayNumber, dayMenu) {
 
       <p class="day"><i class="fa-regular fa-calendar"></i>${dayNames[dayNumber]}</p>
       <p class="menu-subtitle">${getSubtitle(dayNumber)}</p>
+      <p class="menu-date">${dayMenu.date || ""}</p>
 
-      <p class="breakfast">Breakfast</p>
-      <div class="description">
-        ${formatMealItems(dayMenu.breakfast)}
-      </div>
+      ${createMealSection(
+        "Breakfast",
+        dayMenu.breakfast,
+        dayMenu.breakfast_source,
+        dayMenu.breakfast_note
+      )}
 
-      <p class="lunch">Lunch</p>
-      <div class="description">
-        ${formatMealItems(dayMenu.lunch)}
-      </div>
+      ${createMealSection(
+        "Lunch",
+        dayMenu.lunch,
+        dayMenu.lunch_source,
+        dayMenu.lunch_note
+      )}
 
-      <p class="dinner">Dinner</p>
-      <div class="description">
-        ${formatMealItems(dayMenu.dinner)}
-      </div>
+      ${createMealSection(
+        "Dinner",
+        dayMenu.dinner,
+        dayMenu.dinner_source,
+        dayMenu.dinner_note
+      )}
     </div>
   `;
 }
@@ -83,9 +120,16 @@ function renderMenus(startDay) {
     const dayToShow = (startDay + i) % 7;
 
     const dayMenu = allMenus[dayToShow] || {
+      date: "",
       breakfast: [],
       lunch: [],
-      dinner: []
+      dinner: [],
+      breakfast_note: "",
+      lunch_note: "",
+      dinner_note: "",
+      breakfast_source: "planned",
+      lunch_source: "planned",
+      dinner_source: "planned"
     };
 
     menuContainer.innerHTML += createMenuCard(dayToShow, dayMenu);
@@ -96,7 +140,7 @@ function renderMenus(startDay) {
 
 async function loadMenus() {
   try {
-    const response = await fetch("get_menus.php?v=7");
+    const response = await fetch("get_menus.php?v=8");
     const data = await response.json();
 
     allMenus = data.menus || {};

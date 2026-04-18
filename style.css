@@ -152,6 +152,7 @@ body {
   border: 1px solid orange;
 }
 
+
 .first-part {
   font-weight: 600;
   font-size: 16px;
@@ -176,4 +177,38 @@ body {
   .menu-container {
     grid-template-columns: 1fr;
   }
+}
+.menu-date {
+  color: #cfcfcf;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.meal-status {
+  margin-bottom: 10px;
+}
+
+.status-badge {
+  display: inline-block;
+  background-color: orange;
+  color: white !important;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.chef-note {
+  color: #ffd39a !important;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.planned-text {
+  color: #bdbdbd !important;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-style: italic;
 }
